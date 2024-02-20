@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CurveGraph : MonoBehaviour
@@ -16,7 +14,8 @@ public class CurveGraph : MonoBehaviour
     private void Start()
     {
         // XPower2();
-        XPower3();
+        // XPower3();
+        Sin();
     }
 
     private void XPower2()
@@ -35,7 +34,7 @@ public class CurveGraph : MonoBehaviour
             localPos.z = 0;
 
             point.localPosition = localPos;
-            point.localScale = new(0.2f, 0.2f, 0.2f);
+            point.localScale = new(0.1f, 0.1f, 0.1f);
             point.parent = this.transform;
         }
     }
@@ -56,7 +55,27 @@ public class CurveGraph : MonoBehaviour
             localPos.z = 0;
 
             point.localPosition = localPos;
-            point.localScale = new(0.5f, 0.5f, 0.5f);
+            point.localScale = new(0.1f, 0.1f, 0.1f);
+            point.parent = this.transform;
+        }
+    }
+
+    private void Sin()
+    {
+        var degree = 360 / resolution;
+        
+        for (var i = 0; i <= resolution; i++)
+        {
+            var point = GameObject.Instantiate(pointPrefab);
+            var localPos = point.localPosition;
+            var d = degree * i;
+            
+            localPos.x = d / 28f;
+            localPos.y = Mathf.Sin(d / 28f);
+            localPos.z = 0;
+
+            point.localPosition = localPos;
+            point.localScale = new(0.1f, 0.1f, 0.1f);
             point.parent = this.transform;
         }
     }
